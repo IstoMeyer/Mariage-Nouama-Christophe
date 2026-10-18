@@ -1,0 +1,151 @@
+:root {
+  --page-bg: #F3E5DC;
+  --page-surface: #FBF4EF;
+  --page-ink: #2B1E27;
+  --page-muted: #735E63;
+  --page-accent: #2340A0;
+  --page-brass: #9C7429;
+  --page-line: rgba(156, 116, 41, .35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page-bg: #11152E;
+    --page-surface: #191F42;
+    --page-ink: #F2E7E0;
+    --page-muted: #B8ABB4;
+    --page-accent: #9DB2FF;
+    --page-brass: #D8B468;
+    --page-line: rgba(216, 180, 104, .3);
+  }
+}
+
+:root[data-theme="dark"] {
+  --page-bg: #11152E;
+  --page-surface: #191F42;
+  --page-ink: #F2E7E0;
+  --page-muted: #B8ABB4;
+  --page-accent: #9DB2FF;
+  --page-brass: #D8B468;
+  --page-line: rgba(216, 180, 104, .3);
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .35rem;
+  padding: .4rem;
+  border: 1px solid var(--line, var(--page-line));
+  border-radius: 999px;
+  background: var(--surface, var(--page-surface));
+}
+
+.site-nav a {
+  padding: .55rem .9rem;
+  border-radius: 999px;
+  color: var(--muted, var(--page-muted));
+  font-family: var(--display, "Marcellus", Georgia, serif);
+  font-size: .88rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  background: var(--accent, var(--page-accent));
+  color: #fff;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.page-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .55rem;
+}
+
+.page-heading .eyebrow {
+  color: var(--brass, var(--page-brass));
+  font-family: var(--display, "Marcellus", Georgia, serif);
+  font-size: .78rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.page-heading h1 {
+  color: var(--ink, var(--page-ink));
+  font-family: var(--display, "Marcellus", Georgia, serif);
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.page-copy {
+  max-width: 34rem;
+  color: var(--muted, var(--page-muted));
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+.page-card {
+  width: 100%;
+  max-width: 34rem;
+  padding: clamp(2rem, 7vw, 3.5rem);
+  border: 1px solid var(--line, var(--page-line));
+  border-radius: 999px 999px 6px 6px / 8rem 8rem 6px 6px;
+  background: var(--surface, var(--page-surface));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-card svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--brass, var(--page-brass));
+}
+
+.page-card h2 {
+  color: var(--ink, var(--page-ink));
+  font-family: var(--display, "Marcellus", Georgia, serif);
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+
+.page-card p {
+  max-width: 25rem;
+  color: var(--muted, var(--page-muted));
+}
+
+.site-footer {
+  color: var(--muted, var(--page-muted));
+  font-size: .9rem;
+  text-align: center;
+}
+
+@media (max-width: 25rem) {
+  .site-nav {
+    border-radius: 1rem;
+  }
+
+  .site-nav a {
+    padding-inline: .65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a {
+    transition: none;
+  }
+}
