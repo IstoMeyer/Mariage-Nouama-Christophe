@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lune de miel Australie 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Plan : papier sable, encre marine, corail pour les jours, sarcelle pour les vols.
+   Mise en page : en-tête illustré, frise du trajet, cartes de jour en grille. */
+:root {
+  --paper: #f5ede1;
+  --ink: #17293b;
+  --muted: #5d6b78;
+  --coral: #cf5f43;
+  --teal: #2a7b76;
+  --card: #fffaf3;
+  --line: #e2d5c3;
+  --display: "Fraunces", Georgia, serif;
+  --body: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+main { max-width: 1040px; margin: 0 auto; padding: 0 18px 48px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+header.hero { padding: 28px 0 8px; }
+.hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.05; }
+.hero .sub { color: var(--muted); margin-top: 10px; max-width: 60ch; }
+.hero svg { width: 100%; height: auto; display: block; margin-top: 18px; }
+
+.route { margin: 24px 0 8px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 6px; }
+.route svg { width: 100%; height: auto; display: block; }
+
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 6px; }
+.fact { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.95rem; }
+.fact b { color: var(--coral); font-weight: 600; }
+
+.days { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+@media (min-width: 720px) { .days { grid-template-columns: 1fr 1fr; } }
+
+.day { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 10px; }
+.day-head { display: flex; gap: 14px; align-items: flex-start; }
+.badge { min-width: 56px; text-align: center; background: var(--ink); color: var(--paper); border-radius: 10px; padding: 6px 4px; line-height: 1.1; }
+.badge .d { font-family: var(--display); font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.badge .m { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.day h2 { font-size: 1.3rem; }
+.day .where { color: var(--teal); font-weight: 600; font-size: 0.95rem; }
+.slots { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.slots li { padding-left: 14px; position: relative; }
+.slots li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+.slots li b { font-weight: 600; }
+.foot { border-top: 1px dashed var(--line); padding-top: 10px; font-size: 0.93rem; color: var(--muted); display: grid; gap: 4px; }
+.foot strong { color: var(--ink); font-weight: 600; }
+
+.budget { margin-top: 26px; background: var(--ink); color: var(--paper); border-radius: 14px; padding: 20px 20px 18px; }
+.budget h2 { font-size: 1.35rem; color: var(--paper); }
+.budget ul { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 6px; }
+.budget .muted { color: #c9d2da; font-size: 0.93rem; margin-top: 12px; }
+
+.todo { margin-top: 20px; padding: 0 4px; color: var(--muted); font-size: 0.95rem; }
+.todo li { margin-bottom: 4px; }
+.todo ul { padding-left: 18px; margin: 8px 0 0; }
+
+@media (max-width: 380px) { main { padding: 0 14px 40px; } }
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <h1>Lune de miel en Australie</h1>
+  <p class="sub">Du 14 au 25 avril 2027 · Sydney, Melbourne, Cairns, puis retour à Sydney · 11 nuits, 12 jours.</p>
+
+  <svg viewBox="0 0 900 220" role="img" aria-label="Illustration : soleil sur l'océan, vague et voilier">
+    <rect width="900" height="220" rx="18" fill="#17293b"/>
+    <circle cx="700" cy="78" r="38" fill="#e9a04a"/>
+    <path d="M0 150 Q 60 130 120 150 T 240 150 T 360 150 T 480 150 T 600 150 T 720 150 T 840 150 T 900 150 V220 H0 Z" fill="#2a7b76" opacity="0.85"/>
+    <path d="M0 170 Q 70 150 140 170 T 280 170 T 420 170 T 560 170 T 700 170 T 840 170 T 900 170 V220 H0 Z" fill="#1f5f5b"/>
+    <path d="M0 192 Q 80 176 160 192 T 320 192 T 480 192 T 640 192 T 800 192 T 900 192 V220 H0 Z" fill="#cf5f43" opacity="0.9"/>
+    <g transform="translate(250,78)">
+      <path d="M0 40 L70 40 L58 56 L12 56 Z" fill="#f5ede1"/>
+      <path d="M32 40 L32 -2 L58 36 Z" fill="#f5ede1"/>
+      <path d="M26 40 L26 8 L4 36 Z" fill="#e9a04a"/>
+    </g>
+    <text x="40" y="52" fill="#f5ede1" font-family="Fraunces, Georgia, serif" font-size="26">Sydney → Melbourne → Cairns</text>
+  </svg>
+
+  <div class="facts">
+    <span class="fact"><b>Hôtels</b> env. 1 910 € (formule charme)</span>
+    <span class="fact"><b>Excursion récif</b> 126,80 CHF</span>
+    <span class="fact"><b>Vols internes</b> à confirmer</span>
+  </div>
+</header>
+
+<section class="route" aria-label="Frise du trajet">
+  <svg viewBox="0 0 900 130" role="img" aria-label="Trajet : Sydney, Melbourne, Cairns, Sydney">
+    <path d="M110 60 L330 60" stroke="#2a7b76" stroke-width="3" stroke-dasharray="8 7" fill="none"/>
+    <path d="M330 60 L560 60" stroke="#2a7b76" stroke-width="3" stroke-dasharray="8 7" fill="none"/>
+    <path d="M560 60 L790 60" stroke="#2a7b76" stroke-width="3" stroke-dasharray="8 7" fill="none"/>
+    <text x="220" y="48" text-anchor="middle" font-family="Source Sans 3, Arial, sans-serif" font-size="14" fill="#5d6b78">avion ≈ 1h30 (17 avr)</text>
+    <text x="445" y="48" text-anchor="middle" font-family="Source Sans 3, Arial, sans-serif" font-size="14" fill="#5d6b78">avion ≈ 3h30 (20 avr)</text>
+    <text x="675" y="48" text-anchor="middle" font-family="Source Sans 3, Arial, sans-serif" font-size="14" fill="#5d6b78">avion ≈ 3h (23 avr)</text>
+    <circle cx="110" cy="60" r="14" fill="#cf5f43"/><circle cx="330" cy="60" r="14" fill="#cf5f43"/>
+    <circle cx="560" cy="60" r="14" fill="#cf5f43"/><circle cx="790" cy="60" r="14" fill="#cf5f43"/>
+    <g font-family="Fraunces, Georgia, serif" font-size="20" font-weight="600" fill="#17293b" text-anchor="middle">
+      <text x="110" y="104">Sydney</text><text x="330" y="104">Melbourne</text>
+      <text x="560" y="104">Airlie Beach</text><text x="790" y="104">Sydney</text>
+    </g>
+    <g font-family="Source Sans 3, Arial, sans-serif" font-size="13" fill="#5d6b78" text-anchor="middle">
+      <text x="110" y="122">14 → 17 avr</text><text x="330" y="122">17 → 20 avr</text>
+      <text x="560" y="122">20 → 23 avr</text><text x="790" y="122">23 → 25 avr</text>
+    </g>
+  </svg>
+</section>
+
+<section aria-label="Photos par jour" style="margin:22px 0 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px">
+  <h2 style="font-size:1.2rem;margin-bottom:10px">Photos par jour</h2>
+  <ol style="margin:0;padding-left:20px;display:grid;gap:6px">
+    <li><a href="https://www.google.com/search?tbm=isch&q=Circular+Quay+Sydney" style="color:var(--teal)">14 avril · Circular Quay, Sydney</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Sydney+Opera+House+Harbour+Bridge" style="color:var(--teal)">15 avril · Opéra et Harbour Bridge</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Three+Sisters+Katoomba+Blue+Mountains" style="color:var(--teal)">16 avril · Three Sisters, Blue Mountains</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Hosier+Lane+Melbourne" style="color:var(--teal)">17 avril · Hosier Lane, Melbourne</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Twelve+Apostles+Great+Ocean+Road" style="color:var(--teal)">18 avril · Douze Apôtres</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Phillip+Island+Penguin+Parade+koala" style="color:var(--teal)">19 avril · Penguin Parade et koalas, Phillip Island</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Airlie+Beach+Whitsunday+Coast" style="color:var(--teal)">20 avril · Airlie Beach</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Whitehaven+Beach+Whitsunday" style="color:var(--teal)">21 avril · Whitehaven Beach</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Cedar+Creek+Falls+Airlie+Beach" style="color:var(--teal)">22 avril · Cedar Creek Falls</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Darling+Harbour+Sydney+sunset" style="color:var(--teal)">23 avril · Darling Harbour au coucher du soleil</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Bondi+Beach+coastal+walk" style="color:var(--teal)">24 avril · Bondi Beach et sentier côtier</a></li>
+    <li><a href="https://www.google.com/search?tbm=isch&q=Sydney+Harbour+Circular+Quay+dinner" style="color:var(--teal)">25 avril · Port de Sydney</a></li>
+  </ol>
+</section>
+
+<section class="days" aria-label="Programme jour par jour">
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">14</div><div class="m">avr</div></div>
+      <div><h2>Arrivée à Sydney</h2><div class="where">Sydney</div></div></div>
+    <ul class="slots">
+      <li><b>Arrivée :</b> vol international à 19h00, transfert et installation vers 20h30. Demander un check-in tardif à l'hôtel.</li>
+      <li><b>Soir :</b> dîner léger près de l'hôtel. Pas de visite ce jour-là.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Sofitel Darling Harbour (544 €, 3 nuits)</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">15</div><div class="m">avr</div></div>
+      <div><h2>Opéra et port</h2><div class="where">Sydney</div></div></div>
+    <ul class="slots">
+      <li><b>Matin :</b> Opéra de Sydney et Royal Botanic Garden.</li>
+      <li><b>Après-midi :</b> marche sur le Harbour Bridge (BridgeClimb optionnelle, payante).</li>
+      <li><b>Soir :</b> dîner à Darling Harbour.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Sofitel Darling Harbour</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">16</div><div class="m">avr</div></div>
+      <div><h2>Blue Mountains</h2><div class="where">Excursion depuis Sydney</div></div></div>
+    <ul class="slots">
+      <li><b>Journée :</b> Three Sisters et Katoomba, environ 2 h de route depuis Sydney.</li>
+      <li><b>Fin d'après-midi :</b> retour à Sydney, dîner tranquille.</li>
+    </ul>
+    <div class="foot"><span><strong>Transport :</strong> voiture de location ou excursion organisée</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">17</div><div class="m">avr</div></div>
+      <div><h2>Sydney → Melbourne</h2><div class="where">Melbourne</div></div></div>
+    <ul class="slots">
+      <li><b>Matin :</b> vol interne d'environ 1h30 vers Melbourne.</li>
+      <li><b>Après-midi :</b> ruelles du centre, Hosier Lane et Degraves Street, cafés.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Hilton Melbourne Little Queen Street (526 €, 3 nuits)</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">18</div><div class="m">avr</div></div>
+      <div><h2>Great Ocean Road</h2><div class="where">Excursion depuis Melbourne</div></div></div>
+    <ul class="slots">
+      <li><b>Journée :</b> les Douze Apôtres et les falaises de la côte.</li>
+      <li><b>Soir :</b> retour à Melbourne.</li>
+    </ul>
+    <div class="foot"><span><strong>Transport :</strong> excursion organisée ou voiture</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">19</div><div class="m">avr</div></div>
+      <div><h2>Phillip Island : pingouins, koalas et kangourous</h2><div class="where">Excursion depuis Melbourne</div></div></div>
+    <ul class="slots">
+      <li><b>Matin :</b> départ vers Phillip Island (environ 2 h de route), arrêt au Koala Conservation Centre pour voir les koalas.</li>
+      <li><b>Après-midi :</b> kangourous dans les espaces naturels de l'île. Option : croisière d'observation des phoques, 66,15 CHF (note 4,67).</li>
+      <li><b>Soir :</b> Penguin Parade au coucher du soleil. Billet à réserver sur le site officiel, retour à Melbourne après le spectacle.</li>
+      <li><b>Dîner romantique :</b> Stokehouse, 30 Jacka Blvd, St Kilda, en bord de plage avec vue sur la mer, ouvert le lundi de 12h00 à 23h00. Réserver à l'avance, et prévoir le trajet depuis Phillip Island vers St Kilda.</li>
+      <li><b>Option réservable sur Booking :</b> Puffing Billy et Penguin Parade, 69,02 CHF (note 3,82).</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Hilton Melbourne Little Queen Street</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">20</div><div class="m">avr</div></div>
+      <div><h2>Melbourne → Airlie Beach</h2><div class="where">Airlie Beach</div></div></div>
+    <ul class="slots">
+      <li><b>Matin :</b> temps libre, puis vol d'environ 3h30 jusqu'à Proserpine (aéroport le plus proche, à confirmer), suivi d'environ 45 min de transfert.</li>
+      <li><b>Soir :</b> promenade sur le front de mer d'Airlie Beach.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Shingley Beach Resort (484 €, en bord de plage, piscine avec vue)</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">21</div><div class="m">avr</div></div>
+      <div><h2>Grande Barrière de Corail</h2><div class="where">Excursion depuis Airlie Beach</div></div></div>
+    <ul class="slots">
+      <li><b>Journée :</b> croisière Whitehaven Beach et snorkeling avec déjeuner (ZigZag Whitsundays).</li>
+    </ul>
+    <div class="foot">
+      <span><strong>Prix :</strong> 137,47 CHF (note 4,75 sur 182 avis)</span>
+      <span><strong>Option survol :</strong> survol de la Grande Barrière, 212,24 CHF (4,80)</span>
+    </div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">22</div><div class="m">avr</div></div>
+      <div><h2>Journée libre à Airlie Beach</h2><div class="where">Airlie Beach</div></div></div>
+    <ul class="slots">
+      <li><b>Journée :</b> piscine et spa à l'hôtel.</li>
+      <li><b>Option :</b> cascades de Cedar Creek en demi-journée, 54,64 CHF.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Shingley Beach Resort</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">23</div><div class="m">avr</div></div>
+      <div><h2>Airlie Beach → Sydney</h2><div class="where">Sydney</div></div></div>
+    <ul class="slots">
+      <li><b>Matin :</b> transfert vers l'aéroport de Proserpine, puis vol d'environ 3h vers Sydney (à confirmer).</li>
+      <li><b>Soir :</b> coucher de soleil sur le port.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Sofitel Darling Harbour (356 €, 2 nuits)</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">24</div><div class="m">avr</div></div>
+      <div><h2>Dernière journée</h2><div class="where">Sydney</div></div></div>
+    <ul class="slots">
+      <li><b>Journée :</b> Bondi Beach et sentier côtier jusqu'à Coogee, ou ferry jusqu'à Manly.</li>
+      <li><b>Soir :</b> dîner de fin de voyage à Circular Quay.</li>
+    </ul>
+    <div class="foot"><span><strong>Hébergement :</strong> Sofitel Darling Harbour</span></div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><div class="badge"><div class="d">25</div><div class="m">avr</div></div>
+      <div><h2>Retour</h2><div class="where">Sydney → Genève</div></div></div>
+    <ul class="slots">
+      <li><b>Matin :</b> check-out, transfert à l'aéroport.</li>
+      <li><b>Matinée et déjeuner :</b> temps libre, bagages laissés à l'hôtel si besoin.</li>
+      <li><b>Fin d'après-midi :</b> départ de l'hôtel vers 17h00 pour le vol de 20h50 vers Genève, avec escale(s).</li>
+    </ul>
+    <div class="foot"><span><strong>Vol :</strong> départ 20h50, à réserver</span></div>
+  </article>
+
+</section>
+
+<section class="budget" aria-label="Budget hébergement">
+  <h2>Hébergement, formule charme</h2>
+  <ul>
+    <li>Sofitel Darling Harbour, 3 nuits : 544 €</li>
+    <li>Hilton Melbourne Little Queen Street, 3 nuits : 526 €</li>
+    <li>Shingley Beach Resort, 3 nuits : 484 €</li>
+    <li>Sofitel Darling Harbour, 2 nuits : 356 €</li>
+  </ul>
+  <p class="muted">Total environ 1 910 € pour 2 personnes. Prix Booking indicatifs, à revérifier avant réservation. La formule haut de gamme est environ 2 870 €.</p>
+</section>
+
+<section class="todo">
+  <strong>À confirmer avant de réserver</strong>
+  <ul>
+    <li>Les vols internes, dont Melbourne → Proserpine (aéroport d'Airlie Beach), à confirmer.</li>
+    <li>Le vol international depuis Marrakech : le mariage se termine le 11 avril, un départ le 12 ou le 13 laisse le temps du trajet.</li>
+    <li>Le vol retour de Sydney le 25 avril, départ 20h50, avec escale(s).</li>
+    <li>Arrivée le 14 avril à 19h00 : demander un check-in tardif au Sofitel Darling Harbour.</li>
+  </ul>
+</section>
+
+</main>
+</body>
+</html>

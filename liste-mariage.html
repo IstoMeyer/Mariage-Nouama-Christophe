@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Découvrez la liste de mariage de Nouama et Christophe.">
-  <title>Liste de mariage — Nouama &amp; Christophe</title>
+  <meta name="description" content="Choisissez une étape de la lune de miel australienne de Nouama et Christophe et offrez-leur un souvenir inoubliable.">
+  <title>Notre voyage de noces — Nouama &amp; Christophe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Petrona:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap">
@@ -21,27 +21,384 @@
       --display: "Marcellus", Georgia, serif;
       --body: "Petrona", Georgia, "Times New Roman", serif;
     }
+
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      background: var(--bg);
+      background:
+        radial-gradient(ellipse at 88% 7%, color-mix(in srgb, var(--brass) 10%, transparent), transparent 25rem),
+        var(--bg);
       color: var(--ink);
       font-family: var(--body);
       font-size: 1.0625rem;
       font-weight: 300;
       line-height: 1.65;
     }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
     .wrap {
-      max-width: 46rem;
+      width: min(100% - 2rem, 76rem);
       min-height: 100vh;
       margin: 0 auto;
-      padding: 2rem max(16px, env(safe-area-inset-right, 0px)) 3rem max(16px, env(safe-area-inset-left, 0px));
+      padding: 1.5rem 0 3rem;
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      gap: 2.5rem;
     }
-    @media (max-width: 34rem) { .wrap { gap: 3rem; } }
+
+    .site-nav { align-self: center; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(2rem, 6vw, 4.5rem);
+      border: 1px solid var(--line);
+      border-radius: 2rem 2rem .5rem 2rem;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .hero::after {
+      content: "✳";
+      position: absolute;
+      right: clamp(1rem, 5vw, 3.5rem);
+      bottom: -.72em;
+      color: color-mix(in srgb, var(--brass) 14%, transparent);
+      font-size: clamp(8rem, 24vw, 17rem);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+    .eyebrow {
+      margin: 0 0 .65rem;
+      color: var(--brass);
+      font-family: var(--display);
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      text-wrap: balance;
+    }
+
+    h1 {
+      max-width: 16ch;
+      margin: 0 auto;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      line-height: 1.08;
+    }
+
+    .hero-copy {
+      max-width: 41rem;
+      margin: 1.2rem auto 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      font-style: italic;
+    }
+
+    .trip-dates {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: 1.6rem;
+      padding: .5rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: .95rem;
+    }
+
+    .trip-dates svg { width: 1rem; height: 1rem; flex: none; }
+
+    .route {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .5rem 1rem;
+      color: var(--muted);
+      font-family: var(--display);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    .route span { display: inline-flex; align-items: center; gap: .55rem; }
+    .route span::before {
+      content: "";
+      width: .45rem;
+      height: .45rem;
+      border-radius: 50%;
+      background: var(--brass);
+    }
+    .route i { color: var(--brass); font-style: normal; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+    }
+
+    .section-heading p {
+      max-width: 27rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: .98rem;
+      text-align: right;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .day {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+
+    .day:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px color-mix(in srgb, var(--ink) 9%, transparent);
+    }
+
+    .day.is-selected {
+      border-color: var(--brass);
+      box-shadow: inset 0 0 0 1px var(--brass);
+    }
+
+    .day-photo {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--brass) 16%, var(--surface));
+    }
+
+    .day-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .day:hover .day-photo img { transform: scale(1.04); }
+
+    .date {
+      position: absolute;
+      top: .8rem;
+      left: .8rem;
+      min-width: 3.3rem;
+      padding: .35rem .55rem .3rem;
+      border-radius: .65rem;
+      background: var(--surface);
+      color: var(--accent);
+      font-family: var(--display);
+      line-height: 1.1;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+    }
+
+    .date b { display: block; font-size: 1.35rem; font-weight: 400; }
+    .date span { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .day-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .day-place {
+      margin-bottom: .15rem;
+      color: var(--brass);
+      font-size: .76rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .day h3 {
+      margin: 0;
+      font-size: 1.32rem;
+      line-height: 1.25;
+    }
+
+    .day-description {
+      margin: .55rem 0 1rem;
+      color: var(--muted);
+      font-size: .96rem;
+      line-height: 1.5;
+    }
+
+    .gift-idea {
+      width: 100%;
+      margin-top: auto;
+      padding-top: .75rem;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+      font-size: .9rem;
+    }
+
+    .gift-idea strong {
+      display: block;
+      margin-bottom: .1rem;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: .91rem;
+      font-weight: 400;
+    }
+
+    .choose {
+      width: 100%;
+      margin-top: .8rem;
+      padding: .65rem .8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font: 400 .9rem var(--display);
+      transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .choose:hover, .day.is-selected .choose {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .participation {
+      padding: clamp(1.4rem, 4vw, 2.3rem);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 1fr minmax(15rem, .8fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .participation h2 {
+      margin-bottom: .5rem;
+      font-size: 1.55rem;
+    }
+
+    .participation p { margin-bottom: 0; color: var(--muted); }
+
+    .selection-note {
+      min-height: 3.5rem;
+      padding: .85rem 1rem;
+      border-left: 2px solid var(--brass);
+      color: var(--ink);
+      font-size: .95rem;
+    }
+
+    .message-form {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: .65rem;
+    }
+
+    .message-form label {
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 1.05rem;
+    }
+
+    .message-form textarea,
+    .message-form input {
+      width: 100%;
+      padding: .9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: .75rem;
+      background: var(--bg);
+      color: var(--ink);
+      font: 300 1rem/1.55 var(--body);
+    }
+
+    .message-form textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    .message-form textarea::placeholder { color: var(--muted); opacity: .8; }
+
+    .message-form button {
+      justify-self: start;
+      padding: .7rem 1.2rem;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      font: 400 .95rem var(--display);
+      transition: opacity .2s ease;
+    }
+
+    .message-form button:hover { opacity: .85; }
+    .message-hint { color: var(--muted); font-size: .88rem; }
+
+    .site-footer { margin-top: auto; }
+
+    @media (max-width: 58rem) {
+      .days { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 38rem) {
+      .wrap { width: min(100% - 1.25rem, 32rem); padding-top: .75rem; gap: 1.75rem; }
+      .hero { border-radius: 1.3rem 1.3rem .4rem 1.3rem; padding: 2.3rem 1.15rem; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .section-heading p { text-align: left; }
+      .days { grid-template-columns: minmax(0, 1fr); gap: .85rem; }
+      .day { display: grid; grid-template-columns: minmax(7rem, 34%) 1fr; }
+      .day-photo { min-height: 100%; aspect-ratio: auto; }
+      .day-body { padding: .85rem; }
+      .day h3 { font-size: 1.12rem; }
+      .day-description { font-size: .88rem; margin: .35rem 0 .7rem; }
+      .gift-idea { padding-top: .55rem; font-size: .83rem; }
+      .choose { padding: .55rem .45rem; font-size: .82rem; }
+      .date { top: .5rem; left: .5rem; min-width: 2.75rem; padding: .25rem .4rem; }
+      .date b { font-size: 1.15rem; }
+      .participation { grid-template-columns: 1fr; gap: .75rem; }
+    }
+
+    @media (max-width: 23rem) {
+      .day { grid-template-columns: 1fr; }
+      .day-photo { aspect-ratio: 16 / 9; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -52,23 +409,247 @@
       <a href="galerie.html">Galerie de photos</a>
     </nav>
 
-    <section class="page-content" aria-labelledby="page-title">
-      <div class="page-heading">
-        <p class="eyebrow">Une attention pour les mariés</p>
-        <h1 id="page-title">Liste de mariage</h1>
+    <header class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Nouama &amp; Christophe · avril 2027</p>
+        <h1>Un voyage à vivre, des souvenirs à partager</h1>
+        <p class="hero-copy">Pour notre liste de mariage, nous rêvons d'une lune de miel en Australie. Plutôt qu'un objet, vous pouvez nous offrir un petit morceau de ce grand voyage : une excursion, un dîner ou simplement une belle étape à raconter.</p>
+        <span class="trip-dates">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg>
+          14 — 25 avril 2027 · 12 jours en Australie
+        </span>
       </div>
-      <p class="page-copy">Merci de célébrer cette belle journée avec nous.</p>
-      <div class="page-card">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 20.2 4.6 13a4.4 4.4 0 0 1 6.2-6.2L12 8l1.2-1.2a4.4 4.4 0 0 1 6.2 6.2L12 20.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-          <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-        </svg>
-        <h2>La liste se prépare</h2>
-        <p>Votre présence à nos côtés est déjà le plus beau des cadeaux. Les détails de notre liste de mariage seront partagés ici prochainement.</p>
+    </header>
+
+    <div class="route" aria-label="Itinéraire du voyage">
+      <span>Sydney · 14–17 avr.</span><i aria-hidden="true">→</i>
+      <span>Melbourne · 17–20 avr.</span><i aria-hidden="true">→</i>
+      <span>Airlie Beach · 20–23 avr.</span><i aria-hidden="true">→</i>
+      <span>Sydney · 23–25 avr.</span>
+    </div>
+
+    <section aria-labelledby="days-title">
+      <div class="section-heading">
+        <h2 id="days-title">Choisissez une étape à nous offrir</h2>
+        <p>Chaque attention, petite ou grande, ajoutera un souvenir à notre voyage. Cliquez sur les étapes qui vous inspirent.</p>
+      </div>
+
+      <div class="days">
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/14%20avril%20Sydney.jpg" alt="Vue de Sydney pour notre arrivée" loading="lazy"><div class="date"><b>14</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Sydney</p><h3>Le début de l'aventure</h3>
+            <p class="day-description">Après le grand voyage, installation à l'hôtel et premier dîner tout en douceur près du port.</p>
+            <p class="gift-idea"><strong>Une jolie arrivée</strong>Un dîner de bienvenue ou notre transfert en ville.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/15%20avril%20Sydney%20Repas%20Romantique.png" alt="Repas face au port de Sydney" loading="lazy"><div class="date"><b>15</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Sydney</p><h3>Opéra, port &amp; dîner à deux</h3>
+            <p class="day-description">L'Opéra, les jardins botaniques, le Harbour Bridge et une soirée romantique à Darling Harbour.</p>
+            <p class="gift-idea"><strong>Un moment à deux</strong>Une participation à notre dîner avec vue sur le port.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/16%20avril%20Blue%20Mountain%20Three%20sisters.jpg" alt="Les Three Sisters dans les Blue Mountains" loading="lazy"><div class="date"><b>16</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Blue Mountains</p><h3>Au grand air</h3>
+            <p class="day-description">Une escapade depuis Sydney pour admirer les Three Sisters et les paysages de Katoomba.</p>
+            <p class="gift-idea"><strong>Une journée d'excursion</strong>Un coup de pouce pour le transport et la découverte des montagnes.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/17%20avril%20Melbourne.jfif" alt="Les rues animées de Melbourne" loading="lazy"><div class="date"><b>17</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Sydney → Melbourne</p><h3>Changement de décor</h3>
+            <p class="day-description">Vol vers Melbourne, ruelles colorées, Hosier Lane, Degraves Street et pause dans un café.</p>
+            <p class="gift-idea"><strong>Une escale urbaine</strong>Un café, une balade ou une part de notre trajet vers Melbourne.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/18%20avril%20%C2%B7%20Douze%20Ap%C3%B4tres.webp" alt="Les Douze Apôtres sur la Great Ocean Road" loading="lazy"><div class="date"><b>18</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Great Ocean Road</p><h3>Les Douze Apôtres</h3>
+            <p class="day-description">Une journée sur la route côtière pour découvrir les falaises et les célèbres rochers des Douze Apôtres.</p>
+            <p class="gift-idea"><strong>Une escapade sur la côte</strong>Une participation à cette excursion inoubliable.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/19%20avril%20Penguin.jpg" alt="Manchots à Phillip Island" loading="lazy"><div class="date"><b>19</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Phillip Island</p><h3>Koalas &amp; parade des pingouins</h3>
+            <p class="day-description">Rencontre avec les koalas, balade dans la nature et Penguin Parade au coucher du soleil.</p>
+            <p class="gift-idea"><strong>Un souvenir tout mignon</strong>Une participation à la découverte de l'île et de ses animaux.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/20%20avril%20Airlie%20Beach.webp" alt="Le front de mer d'Airlie Beach" loading="lazy"><div class="date"><b>20</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Melbourne → Airlie Beach</p><h3>Cap sur les Whitsundays</h3>
+            <p class="day-description">Nouveau vol, arrivée à Airlie Beach et première promenade au bord de l'eau.</p>
+            <p class="gift-idea"><strong>Une soirée tropicale</strong>Un dîner ou une petite part du trajet jusqu'à la mer.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/20%20avril%20whitehaven%20beach.jpg" alt="Whitehaven Beach et ses eaux turquoise" loading="lazy"><div class="date"><b>21</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Grande Barrière de Corail</p><h3>Whitehaven &amp; le récif</h3>
+            <p class="day-description">Croisière vers Whitehaven Beach, snorkeling et déjeuner au cœur des Whitsundays.</p>
+            <p class="gift-idea"><strong>Une journée sur l'eau</strong>La croisière est estimée à 137,47 CHF pour deux dans notre programme.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/22%20avril%20Cedar%20Creek%20Falls.jpg" alt="Les cascades de Cedar Creek Falls" loading="lazy"><div class="date"><b>22</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Airlie Beach</p><h3>Une pause au paradis</h3>
+            <p class="day-description">Une journée libre pour profiter de la piscine, du spa ou partir voir les cascades de Cedar Creek.</p>
+            <p class="gift-idea"><strong>Un moment de détente</strong>L'excursion aux cascades est estimée à 54,64 CHF dans notre programme.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/23%20avril_Darling-Harbour_prev.jpg" alt="Darling Harbour à Sydney en soirée" loading="lazy"><div class="date"><b>23</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Airlie Beach → Sydney</p><h3>Le port au coucher du soleil</h3>
+            <p class="day-description">Retour à Sydney et soirée paisible face au port, pour savourer le chemin déjà parcouru.</p>
+            <p class="gift-idea"><strong>Un retour tout en douceur</strong>Une participation à notre dernière escale à Sydney.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/24%20avril%20Bomdi%20Beach.webp" alt="La plage de Bondi à Sydney" loading="lazy"><div class="date"><b>24</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Sydney</p><h3>Un dernier bain de mer</h3>
+            <p class="day-description">Bondi Beach et son sentier côtier vers Coogee, ou une traversée en ferry jusqu'à Manly.</p>
+            <p class="gift-idea"><strong>Un souvenir en bord de mer</strong>Une balade, une traversée ou notre dîner de fin de voyage.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
+
+        <article class="day">
+          <div class="day-photo"><img src="Voyage%20de%20Noces/15%20avril%20Sydney.jpg" alt="Sydney, dernier regard sur l'Australie" loading="lazy"><div class="date"><b>25</b><span>avril</span></div></div>
+          <div class="day-body">
+            <p class="day-place">Sydney → Genève</p><h3>Le retour, la tête pleine d'images</h3>
+            <p class="day-description">Derniers instants à Sydney avant le transfert à l'aéroport et le vol du soir vers Genève.</p>
+            <p class="gift-idea"><strong>Un dernier coup de pouce</strong>Une participation à notre transfert vers l'aéroport.</p>
+            <button class="choose" type="button" aria-pressed="false">Choisir cette étape</button>
+          </div>
+        </article>
       </div>
     </section>
 
-    <footer class="site-footer">Nouama &amp; Christophe · Marrakech, 2027</footer>
+    <section class="participation" aria-labelledby="participation-title">
+      <div>
+        <p class="eyebrow">Un cadeau qui nous fera voyager</p>
+        <h2 id="participation-title">Votre présence, votre attention</h2>
+        <p>La participation est libre : choisissez une étape, ou laissez-nous la surprise. Les boutons servent à noter votre idée sur cet appareil ; ils ne réservent pas de cadeau et aucun paiement n'est collecté sur cette page.</p>
+      </div>
+      <div class="selection-note" id="selection-note" aria-live="polite">Aucune étape choisie pour le moment.</div>
+      <form class="message-form" id="message-form">
+        <label for="guest-message">Votre message ou votre idée</label>
+        <textarea id="guest-message" name="message" maxlength="2000" required placeholder="Partagez-nous votre idée, un mot doux ou une suggestion pour le voyage…"></textarea>
+        <span class="message-hint">La liste des étapes choisies apparaît dans ce champ. Vous pouvez aussi écrire votre propre message.</span>
+        <label for="guest-email">Votre adresse email</label>
+        <input id="guest-email" name="email" type="email" autocomplete="email" autocapitalize="off" required placeholder="nom@exemple.fr">
+        <span class="message-hint">Nous l’ajouterons au message afin de pouvoir vous répondre. Vérifiez le format de l’adresse.</span>
+        <button type="submit">Préparer l’email</button>
+        <span class="message-hint">Votre application de messagerie s’ouvrira avec le message prérempli. Vous pourrez le relire puis l’envoyer.</span>
+      </form>
+    </section>
+
+    <footer class="site-footer">Avec tout notre amour · Nouama &amp; Christophe · Marrakech, 2027</footer>
   </main>
+
+  <script>
+    const cards = [...document.querySelectorAll(".day")];
+    const selectionNote = document.querySelector("#selection-note");
+    const messageForm = document.querySelector("#message-form");
+    const messageField = messageForm.elements.message;
+    const emailField = messageForm.elements.email;
+    const selectionPrefix = "Étapes choisies :";
+    const selectionPrompt = "Un grand merci à toi et fais nous part de tes idées directement :";
+
+    function updateSelection() {
+      const selected = cards.filter((card) => card.classList.contains("is-selected"));
+      const manualMessage = messageField.value
+        .split("\n")
+        .filter((line) => !line.startsWith(selectionPrefix) && line !== selectionPrompt)
+        .join("\n")
+        .trimEnd();
+
+      if (selected.length === 0) {
+        selectionNote.textContent = "Aucune étape choisie pour le moment.";
+      } else {
+        const dates = selected.map((card) => `${card.querySelector(".date b").textContent} avril`);
+        selectionNote.textContent = `${selected.length} étape${selected.length > 1 ? "s" : ""} choisie${selected.length > 1 ? "s" : ""} : ${dates.join(", ")}. Faites-nous part de votre idée directement.`;
+      }
+
+      const selectedSteps = selected.map((card) => {
+        const date = card.querySelector(".date b").textContent;
+        const title = card.querySelector(".day h3").textContent;
+        return `${date} avril — ${title}`;
+      });
+      const selectionLine = selectedSteps.length
+        ? `${selectionPrefix} ${selectedSteps.join(" ; ")}\n${selectionPrompt}`
+        : "";
+      messageField.value = [manualMessage, selectionLine].filter(Boolean).join("\n\n");
+    }
+
+    function createMailtoUrl(message, email) {
+      const body = `${message.trim()}\n\nAdresse email pour vous répondre : ${email.trim()}\n\nÀ bientôt !`;
+      const subject = "Notre voyage de noces — Nouama & Christophe";
+      return `mailto:mmeyer.christophe@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    emailField.addEventListener("input", () => {
+      emailField.setCustomValidity("");
+    });
+
+    emailField.addEventListener("blur", () => {
+      emailField.value = emailField.value.trim();
+      emailField.setCustomValidity(
+        emailField.value && emailField.validity.typeMismatch
+          ? "Veuillez saisir une adresse email valide, par exemple nom@exemple.fr."
+          : ""
+      );
+      emailField.reportValidity();
+    });
+
+    cards.forEach((card) => {
+      const button = card.querySelector(".choose");
+      button.addEventListener("click", () => {
+        const selected = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", String(selected));
+        card.classList.toggle("is-selected", selected);
+        button.textContent = selected ? "Étape choisie ✓" : "Choisir cette étape";
+        updateSelection();
+      });
+    });
+
+    messageForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!messageForm.reportValidity()) return;
+      window.location.href = createMailtoUrl(messageField.value, emailField.value);
+    });
+  </script>
 </body>
 </html>
