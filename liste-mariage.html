@@ -571,7 +571,7 @@
         <label for="guest-email">Votre adresse email</label>
         <input id="guest-email" name="email" type="email" autocomplete="email" autocapitalize="off" required placeholder="nom@exemple.fr">
         <span class="message-hint">Nous l’ajouterons au message afin de pouvoir vous répondre. Vérifiez le format de l’adresse.</span>
-        <button type="submit">Préparer l’email</button>
+        <button type="submit">Envoyer ma participation à la liste de mariage</button>
         <span class="message-hint">Votre application de messagerie s’ouvrira avec le message prérempli. Vous pourrez le relire puis l’envoyer.</span>
       </form>
     </section>
@@ -617,7 +617,7 @@
     function createMailtoUrl(message, email) {
       const body = `${message.trim()}\n\nAdresse email pour vous répondre : ${email.trim()}\n\nÀ bientôt !`;
       const subject = "Notre voyage de noces — Nouama & Christophe";
-      return `mailto:mmeyer.christophe@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      return `mailto:mariage@nouamachristophe.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     emailField.addEventListener("input", () => {
