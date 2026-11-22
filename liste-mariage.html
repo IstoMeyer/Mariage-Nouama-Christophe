@@ -572,7 +572,7 @@
         <input id="guest-email" name="email" type="email" autocomplete="email" autocapitalize="off" required placeholder="nom@exemple.fr">
         <span class="message-hint">Nous l’ajouterons au message afin de pouvoir vous répondre. Vérifiez le format de l’adresse.</span>
         <button type="submit">Envoyer ma participation à la liste de mariage</button>
-        <span class="message-hint">Votre application de messagerie s’ouvrira avec le message prérempli. Vous pourrez le relire puis l’envoyer.</span>
+        <span class="message-hint" id="submit-status" aria-live="polite"></span>
       </form>
     </section>
 
@@ -614,12 +614,6 @@
       messageField.value = [manualMessage, selectionLine].filter(Boolean).join("\n\n");
     }
 
-    function createMailtoUrl(message, email) {
-      const body = `${message.trim()}\n\nAdresse email pour vous répondre : ${email.trim()}\n\nÀ bientôt !`;
-      const subject = "Notre voyage de noces — Nouama & Christophe";
-      return `mailto:mariage@nouamachristophe.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-
     emailField.addEventListener("input", () => {
       emailField.setCustomValidity("");
     });
@@ -645,10 +639,47 @@
       });
     });
 
-    messageForm.addEventListener("submit", (event) => {
+    messageForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       if (!messageForm.reportValidity()) return;
-      window.location.href = createMailtoUrl(messageField.value, emailField.value);
+
+      const submitButton = messageForm.querySelector("button[type='submit']");
+      const submitStatus = document.querySelector("#submit-status");
+      submitButton.disabled = true;
+      submitButton.textContent = "Envoi en cours…";
+      submitStatus.textContent = "";
+
+      try {
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: messageField.value,
+            email: emailField.value
+          })
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Impossible d’envoyer votre participation.");
+        }
+
+        submitStatus.textContent = "Votre participation a bien été envoyée. Merci beaucoup !";
+        messageField.value = "";
+        emailField.value = "";
+        cards.forEach((card) => {
+          card.classList.remove("is-selected");
+          const button = card.querySelector(".choose");
+          button.setAttribute("aria-pressed", "false");
+          button.textContent = "Choisir cette étape";
+        });
+        updateSelection();
+      } catch (error) {
+        submitStatus.textContent = error.message || "Impossible d’envoyer votre participation.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Envoyer ma participation à la liste de mariage";
+      }
     });
   </script>
 </body>

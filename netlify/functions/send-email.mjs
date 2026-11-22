@@ -2,26 +2,13 @@
 import nodemailer from "nodemailer";
 
 export default async (request) => {
-  // Autoriser uniquement les requêtes POST
   if (request.method !== "POST") {
-    return new Response(
-      "Method not allowed",
+    return Response.json(
+      { success: false, error: "Method not allowed" },
       { status: 405 }
     );
   }
 
-  // Vérifier le jeton de sécurité
-  const token = process.env.EMAIL_TEST_TOKEN;
-  const authorization = request.headers.get("authorization");
-
-  if (!token || authorization !== `Bearer ${token}`) {
-    return new Response(
-      "Unauthorized",
-      { status: 401 }
-    );
-  }
-
-  // Récupérer les paramètres Titan depuis Netlify
   const email = process.env.TITAN_EMAIL;
   const password = process.env.TITAN_PASSWORD;
   const host = process.env.TITAN_SMTP_HOST;
@@ -33,8 +20,34 @@ export default async (request) => {
     );
   }
 
+  let payload;
   try {
-    // Connexion au serveur SMTP Titan
+    payload = await request.json();
+  } catch {
+    return Response.json(
+      { success: false, error: "Invalid JSON payload" },
+      { status: 400 }
+    );
+  }
+
+  const message = typeof payload.message === "string" ? payload.message.trim() : "";
+  const guestEmail = typeof payload.email === "string" ? payload.email.trim() : "";
+
+  if (!message || message.length > 2000) {
+    return Response.json(
+      { success: false, error: "Le message est requis et doit contenir au maximum 2000 caractères." },
+      { status: 400 }
+    );
+  }
+
+  if (!guestEmail || guestEmail.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
+    return Response.json(
+      { success: false, error: "Adresse email invalide." },
+      { status: 400 }
+    );
+  }
+
+  try {
     const transporter = nodemailer.createTransport({
       host: host,
       port: 465,
@@ -45,32 +58,14 @@ export default async (request) => {
       }
     });
 
-    // Envoyer un email de test
     await transporter.sendMail({
       from: email,
       to: email,
-      subject: "Test Titan Email - Netlify",
-      text: `
-Bonjour Christophe,
-
-Félicitations !
-
-Ton site de mariage Nouama & Christophe
-peut maintenant envoyer des emails
-automatiquement via Titan Email.
-
-Configuration :
-- Site : www.nouamachristophe.com
-- Hébergement : Netlify
-- Messagerie : Titan Email
-
-À bientôt !
-
-Nouama & Christophe
-      `
+      replyTo: guestEmail,
+      subject: "Participation à notre liste de mariage",
+      text: `${message}\n\nAdresse email pour répondre : ${guestEmail}`
     });
 
-    // Confirmer le succès
     return Response.json({
       success: true,
       message: "Email envoyé avec succès via Titan"
