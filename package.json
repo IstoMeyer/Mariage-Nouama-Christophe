@@ -1,0 +1,24 @@
+{
+  "name": "mariage-nouama-christophe",
+  "version": "1.0.0",
+  "description": "Mariage de Nouama et Christophe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IstoMeyer/Mariage-Nouama-Christophe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/IstoMeyer/Mariage-Nouama-Christophe/issues"
+  },
+  "homepage": "https://github.com/IstoMeyer/Mariage-Nouama-Christophe#readme",
+  "dependencies": {
+    "nodemailer": "^10.6.1"
+  }
+}
