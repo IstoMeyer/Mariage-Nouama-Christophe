@@ -76,17 +76,21 @@ Nouama & Christophe
       message: "Email envoyé avec succès via Titan"
     });
 
-  } catch (error) {
-    console.error("Titan SMTP error:", error.message);
+ 
+} catch (error) {
+  console.error("Titan SMTP error:", error.message);
 
-    return Response.json(
-      {
-        success: false,
-        error: "Impossible d'envoyer l'email"
-      },
-      { status: 500 }
-    );
-  }
+  return Response.json(
+    {
+      success: false,
+      error: "Erreur SMTP Titan",
+      code: error.code || "UNKNOWN",
+      command: error.command || "UNKNOWN"
+    },
+    { status: 500 }
+  );
+}
+
 };
 
 // Adresse de la fonction sur ton site
